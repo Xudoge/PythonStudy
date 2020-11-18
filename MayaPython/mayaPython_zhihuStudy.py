@@ -22,3 +22,32 @@ pCube = cmd.polyCube(w = 10, h = 10, d = 10, name = 'myCube')
 cmd.move(0,100,0,pCube)
 cmd.scale(10,20,10,pCube)
 cmd.rotate(random.uniform(-100.0,100.0),0,0,pCube)
+
+# create instance
+pCubeTransform=pCube[0]
+pCubeIns=cmd.instance(pCubeTransform,name=pCubeTransform+'_Instance')
+
+# loop Create Instance
+for i in range(0,50):
+    pCubeIns=cmd.instance(pCubeTransform,name=pCubeTransform+'_Instance'+str(i))
+    cmd.move(0,10*i,0,pCubeIns)
+    cubeList.append(pCubeIns)
+
+for i in cubeList:
+    cmd.delete(i)
+
+
+# Create a window
+def createWindow(pWindowTitle):
+    windowId='MyWindowID'
+    if cmd.window(windowId,exists=True):
+        cmd.deleteUI(windowId)
+
+    cmd.window(windowId, title = pWindowTitle, sizeable = False, resizeToFitChildren = True)
+
+    # cmd.rowColumnLayout(numberOfColumns = 3, columnWidth = {(1, 75), (2, 60), (3, 60)})
+    # cmd.text(label='my text one')
+
+    cmd.showWindow()
+
+createWindow('MyWindow')
