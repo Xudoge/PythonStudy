@@ -32,9 +32,24 @@ for i in range(0,50):
     pCubeIns=cmd.instance(pCubeTransform,name=pCubeTransform+'_Instance'+str(i))
     cmd.move(0,10*i,0,pCubeIns)
     cubeList.append(pCubeIns)
+   
 
 for i in cubeList:
     cmd.delete(i)
+pCube = cmd.polyCube(w = 10, h = 10, d = 10, name = 'myCube')
+
+# hide Object
+cmd.hide(pCube)
+cmd.showHidden(pCube)
+
+# Group Object
+instGroup =cmd.group(empty=True,name='myInstGroup')
+
+for i in range(0,50):
+    for i in range(0,50):
+        pCubeIns=cmd.instance(pCubeTransform,name=pCubeTransform+'_Instance'+str(i))
+        cmd.move(0,10*i,0,pCubeIns)
+        cmd.parent(pCubeIns,instGroup)
 
 
 # Create a window
