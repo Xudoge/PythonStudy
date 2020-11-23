@@ -51,6 +51,33 @@ for i in range(0,50):
         cmd.move(0,10*i,0,pCubeIns)
         cmd.parent(pCubeIns,instGroup)
 
+# reset pivot
+cmd.xform(instGroup,centerPivots=True)
+
+
+# Select Obejcts
+selectObject =cmd.ls(orderedSelection=True)
+
+selectObject =cmd.ls(selection=True)
+print(selectObject)
+
+cmd.select('pSphere1')
+ # Clear
+cmd.select(clear=True)
+ # Add 
+cmd.select('pCube1',add=True)
+
+# Oject Type
+selectObject =cmd.ls(orderedSelection=True)
+for obj in selectObject:
+    objType=cmd.objectType(obj)
+    print(objType)
+
+selectObject =cmd.ls(selection=True,type='transform')
+for obj in selectObject:
+    objType=cmd.objectType(obj)
+    print(objType)
+
 
 # Create a window
 def createWindow(pWindowTitle):
