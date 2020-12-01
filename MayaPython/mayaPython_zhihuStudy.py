@@ -68,15 +68,16 @@ cmd.select(clear=True)
 cmd.select('pCube1',add=True)
 
 # Oject Type
-selectObject =cmd.ls(orderedSelection=True)
-for obj in selectObject:
-    objType=cmd.objectType(obj)
-    print(objType)
+# selectObject =cmd.ls(orderedSelection=True)
+# for obj in selectObject:
+#     objType=cmd.objectType(obj)
+#     print(objType)
 
 selectObject =cmd.ls(selection=True,type='transform')
-for obj in selectObject:
-    objType=cmd.objectType(obj)
-    print(objType)
+# for obj in selectObject:
+#     objType=cmd.objectType(obj)
+#     print(objType)
+
 
 
 # Create a window
