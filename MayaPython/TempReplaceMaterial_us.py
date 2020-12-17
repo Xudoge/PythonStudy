@@ -219,23 +219,32 @@ def ReplaceMaterial():
         cmd.sets(renderable=True,nss=True,em=True,name= SGName)
         cmd.connectAttr(AnName+".outColor", SGName+".surfaceShader",f=True)
 
-        cmd.connectAttr(baseColor+".outColor",AnName+".baseColor",f=True)
-        cmd.connectAttr(Spec+".outColor",AnName+".specularColor",f=True)
+        if  baseColor!="":
+            cmd.connectAttr(baseColor+".outColor",AnName+".baseColor",f=True)
+
+        if  Spec!="":
+            cmd.connectAttr(Spec+".outColor",AnName+".specularColor",f=True)
         
 
         def MetalCon():
-            cmd.connectAttr(Metal+".outAlpha",AnName+".metalness",f=True)
-        TryFunction(MetalCon)
+            cmd.connectAttr(Metal+".outColor.outColorR",AnName+".diffuseRoughness",f=True)
+
+        if  Metal!="":
+            TryFunction(MetalCon)
 
         def RoughCon():
-            cmd.connectAttr(Rough+".outAlpha",AnName+".diffuseRoughness",f=True)
-        TryFunction(RoughCon)
+            cmd.connectAttr(Rough+".outColor.outColorR",AnName+".specularRoughness",f=True)
+
+        if  Rough!="":
+            TryFunction(RoughCon)
 
         def NormalNTN():
             cmd.connectAttr(Normal+".outNormal",AnName+".normalCamera",f=True)
         def NormalCTN():
             cmd.connectAttr(Normal+".outColor",AnName+".normalCamera",f=True)
-        TryFunction(NormalNTN,[NormalCTN])
+
+        if Normal!="":
+            TryFunction(NormalNTN,[NormalCTN])
 
         cmd.select(cl=True)
         cmd.hyperShade(o=obj)
@@ -255,7 +264,6 @@ def ReplaceMaterial():
 createWindow('MyWindow')
 
 # ReplaceMaterial()
-
 
 # path=r"C:\Users\122\Desktop\Maya\1112"
 # path2=r"C:\Users\122\Desktop\Maya\NewProject2"
